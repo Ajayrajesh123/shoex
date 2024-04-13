@@ -76,14 +76,18 @@ WSGI_APPLICATION = 'shoex.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.parse('postgres://shoex_kdz2_user:YFLkKeCmmOQWpPT7R8EMJoM04HQ7HE8g@dpg-cod3jm0l6cac73bcrbm0-a.oregon-postgres.render.com/shoex_kdz2')
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
