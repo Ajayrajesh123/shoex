@@ -1,0 +1,50 @@
+{% extends 'customer/index.html' %}
+{% block content %}
+{% for item in cart_items %}
+<div class="row">
+    
+  <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{item.product.image.url}}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.product.product_name}}</h5>
+                  <p class="card-text">{{item.product.price}}</p>
+                  <p class="card-text">{{item.quantity}}</p>
+
+                  <form action="{% url 'customer:remove_from_cart' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">delete</button>
+                  </form>
+
+                
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+{% endfor %}
+<div class="row">
+    <div class="col-9"></div>
+    <div class="col-2">
+        <h2>Total {{ grand_total}}</h2>
+    </div>
+</div>
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-2">
+    <form action="{% url 'customer:payment' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success">Pay here</button>
+    </form>
+  </div>
+    
+  </div>
+  
+{% endblock %}

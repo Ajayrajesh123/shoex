@@ -1,0 +1,25 @@
+<!-- {% extends 'seller/home.html'} -->
+{% block content %}
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h1>ADD PRODUCT</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text"  id="" placeholder="name" name="name"> <br><br>
+            <input type="text"  id="" placeholder="description" name="description"> <br><br>
+            <input type="number"  id="" placeholder="price" name="price"> <br><br>
+            <input type="file" name="image" id=""> <br><br>
+            <select name="category" id="">
+                {% for category in categories %}
+                <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">add product</button>
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'seller/home.html' %}
+{% block content %}
+
+<div class="row">
+   <div class="col-3"></div>
+   <div class="col-6">
+    <table>
+        <tr>
+            <td>name</td>
+            <td>price</td>
+            <td>images</td>
+            <td>description</td>
+            <td>category</td>
+            <td>update</td>
+            <td>delete</td>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{products.product_name}}</td>
+            <td>{{products.price}}</td>
+            <td><img src="{{product.image.url}}" alt="" width="100px"></td>
+            <td>{{products.description}}</td>
+            <td>{{products.category_name}}</td>
+            <td><a href=""></a></td>
+            <td><a href="{% url 'seller:product_updates' product.id%}">update</a></td>
+            <td><a class="btn btn-danger" href="{% url 'seller:delete_product' product.id%}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+   </div>
+</div>
+{% endblock %}

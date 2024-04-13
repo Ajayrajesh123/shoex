@@ -1,0 +1,24 @@
+{% extends 'customer/index.html' %}
+{% block content %}
+<div class="row">
+    {% for pdt in products %}
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+            <img src="{{pdt.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{pdt.product_name}}</h5>
+              <p class="card-text">{{pdt.price}}</p>
+              <form action="{% url 'customer:add_to_cart' pdt.id %}" method="post">
+                {% csrf_token %}
+                <div class="quantity" style="display: none;" >
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">add to cart</button>
+              </form>
+              
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
